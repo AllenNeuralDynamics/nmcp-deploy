@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  sample-db:
+    image: postgres:9
+    hostname: sample-db
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: "${DATABASE_PW}"
+    volumes:
+      - sample_data:/var/lib/postgresql/data
+      - ./datastore/sample:/docker-entrypoint-initdb.d
+    networks:
+      - back_tier
+
+volumes:
+  sample_data:
+
+networks:
+  back_tier:

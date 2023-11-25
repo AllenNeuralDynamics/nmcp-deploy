@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  sample-api:
+    image: leapscientific/sample-api:2.0
+    hostname: sample-api
+    environment:
+      NODE_ENV: production
+      DATABASE_PW:
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    ports:
+      - "9671:5000"
+    networks:
+      - back_tier
+
+  sample-client:
+    image: leapscientific/sample-client:2.0
+    hostname: sample-client
+    environment:
+      NODE_ENV: production
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    ports:
+      - "9673:5000"
+    networks:
+      - back_tier
+
+
+volumes:
+  log_output:
+
+networks:
+  back_tier:
