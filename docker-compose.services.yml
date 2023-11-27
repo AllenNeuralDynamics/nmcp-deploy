@@ -25,6 +25,17 @@ services:
     networks:
       - back_tier
 
+  tracing-client:
+    image: leapscientific/tracing-client:2.0
+    hostname: tracing-client
+    environment:
+      NODE_ENV: production
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    ports:
+      - "9683:5000"
+    networks:
+      - back_tier
 
 volumes:
   log_output:
