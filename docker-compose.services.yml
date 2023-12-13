@@ -5,9 +5,12 @@ services:
     hostname: sample-api
     environment:
       NODE_ENV: production
+      NMCP_AUTH_REQUIRED: false
+      CCF_30_ONTOLOGY_PATH: ${NMCP_ONTOLOGY_PATH}
       DATABASE_PW:
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+      - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
     ports:
       - "9671:5000"
     networks:
@@ -34,6 +37,35 @@ services:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     ports:
       - "9683:5000"
+    networks:
+      - back_tier
+
+  search-client:
+    image: leapscientific/search-client:2.0
+    hostname: search-client
+    environment:
+      NODE_ENV: production
+      SEARCH_API_HOST: sample-api
+      SEARCH_CLIENT_SCOPE: "Internal"
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    ports:
+      - "9693:5000"
+    networks:
+      - back_tier
+
+  static-api:
+    image: leapscientific/static-resources:2.0
+    hostname: static-api
+    environment:
+      NODE_ENV: production
+      STATIC_API_IS_INTERNAL: 1
+      STATIC_SLICE_MOUNT_POINT: "/data/slice/"
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+      - "${NMCP_SLICE_LOCATION}:/data/slice"
+    ports:
+      - "9691:5000"
     networks:
       - back_tier
 
