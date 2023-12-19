@@ -26,12 +26,6 @@ nginx -g "daemon off;" &
 
 nginx_pid=$!
 
-test -n "${API_KEY}" && \
-    api_key=${API_KEY}
-
-test -n "${AMPLIFY_IMAGENAME}" && \
-    amplify_imagename=${AMPLIFY_IMAGENAME}
-
 if [ -n "${api_key}" -o -n "${amplify_imagename}" ]; then
     echo "updating ${agent_conf_file} ..."
 
@@ -58,18 +52,6 @@ if [ -n "${api_key}" -o -n "${amplify_imagename}" ]; then
     test -f "${nginx_status_conf}" && \
     chmod 644 ${nginx_status_conf} && \
     chown nginx ${nginx_status_conf} > /dev/null 2>&1
-fi
-
-if ! grep '^api_key.*=[ ]*[[:alnum:]].*' ${agent_conf_file} > /dev/null 2>&1; then
-    echo "no api_key found in ${agent_conf_file}! exiting."
-fi
-
-echo "starting amplify-agent ..."
-service amplify-agent start > /dev/null 2>&1 < /dev/null
-
-if [ $? != 0 ]; then
-    echo "couldn't start the agent, please check ${agent_log_file}"
-    exit 1
 fi
 
 wait ${nginx_pid}
