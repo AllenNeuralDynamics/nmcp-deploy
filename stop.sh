@@ -8,4 +8,4 @@ if [ -z "NMCP_COMPOSE_PROJECT" ]; then
     export NMCP_COMPOSE_PROJECT="nmcp"
 fi
 
-docker-compose -f docker-compose.yml -f docker-compose.services.yml -p ${NMCP_COMPOSE_PROJECT} stop
+docker compose -f docker-compose.yml -f docker-compose.services.yml -p ${NMCP_COMPOSE_PROJECT} stop
