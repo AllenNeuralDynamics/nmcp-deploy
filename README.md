@@ -1,9 +1,5 @@
-# Neuron Browser Internal Deployment
-NDB is a collection of services for managing annotated neuron data.
-
-## Usage
-After installation the various services are available on dedicated ports of the host machine.  For example, the SWC file 
-services are available in the 965x range.  A landing page with links to each service is exposed on port 80.
+# Neuron Morphology Community Toolbox Internal Deployment
+The Neuron Morphology Community Toolbox is a collection of services for managing annotated neuron data.
 
 ## Installation
 The current implementation uses Docker with Docker Compose to manage the multiple independent services.
@@ -32,13 +28,6 @@ Output goes to /opt/data/backup unless unless that mapping has been changed in t
 ```
 ./up.sh
 ```
-The host environment variable ```TRANSFORM_VOL``` can be used to override the location on the host machine that will be 
-mapped to ```/groups/mousebrainmicro/mousebrainmicro``` in the registration transform service container.  By default, 
-this is ```/mnt/groups```.
-
-The path to the Ontology Atlas for brain area lookup defaults to ```/groups/mousebrainmicro/mousebrainmicro/registration/Allen Atlas/OntologyAtlas.h5``` 
-path ()from container perspective).  This can be overridden with the ```ONTOLOGY_PATH``` environment variable *passed to
-the transform-api service in the docker compose file*.  It is not from a host env var.
 
 2. Stopping services
 ```
