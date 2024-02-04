@@ -47,6 +47,7 @@ services:
       NODE_ENV: production
       SEARCH_API_HOST: sample-api
       SEARCH_CLIENT_SCOPE: "Internal"
+      AUTH_CLIENT_ID: "${NMCP_AUTH_CLIENT_ID}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     ports:
