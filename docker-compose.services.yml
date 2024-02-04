@@ -69,22 +69,6 @@ services:
     networks:
       - back_tier
 
-  nmcp-proxy:
-    build:
-      context: nginx-internal
-      dockerfile: Dockerfile
-      no_cache: true
-    platform: linux/amd64
-    environment:
-      API_KEY: "${AMPLIFY_API_KEY}"
-      AMPLIFY_IMAGENAME:
-    volumes:
-      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
-    ports:
-      - 9664:80
-    networks:
-      - back_tier
-
 volumes:
   log_output:
 
