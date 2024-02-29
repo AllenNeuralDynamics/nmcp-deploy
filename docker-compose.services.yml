@@ -5,7 +5,7 @@ services:
     hostname: sample-api
     environment:
       NODE_ENV: production
-      NMCP_AUTH_REQUIRED: false
+      NMCP_AUTH_REQUIRED: true
       CCF_30_ONTOLOGY_PATH: ${NMCP_ONTOLOGY_PATH}
       DATABASE_PW:
     volumes:
