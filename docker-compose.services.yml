@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   sample-api:
-    image: leapscientific/sample-api:2.0
+    image: leapscientific/sample-api:2.0.2
     hostname: sample-api
     environment:
       NODE_ENV: production
@@ -18,7 +18,7 @@ services:
       - back_tier
 
   sample-client:
-    image: leapscientific/sample-client:2.0
+    image: leapscientific/sample-client:2.0.1
     hostname: sample-client
     environment:
       NODE_ENV: production
@@ -30,7 +30,7 @@ services:
       - back_tier
 
   tracing-client:
-    image: leapscientific/tracing-client:2.0
+    image: leapscientific/tracing-client:2.0.1
     hostname: tracing-client
     environment:
       NODE_ENV: production
@@ -42,7 +42,7 @@ services:
       - back_tier
 
   search-client:
-    image: leapscientific/search-client:2.0
+    image: leapscientific/search-client:2.0.0
     hostname: search-client
     environment:
       NODE_ENV: production
@@ -57,7 +57,7 @@ services:
       - back_tier
 
   static-api:
-    image: leapscientific/static-resources:2.0
+    image: leapscientific/static-resources:2.0.0
     hostname: static-api
     environment:
       NODE_ENV: production
