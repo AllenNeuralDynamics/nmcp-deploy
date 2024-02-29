@@ -6,6 +6,7 @@ services:
     environment:
       NODE_ENV: production
       NMCP_AUTH_REQUIRED: true
+      SERVER_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
       CCF_30_ONTOLOGY_PATH: ${NMCP_ONTOLOGY_PATH}
       DATABASE_PW:
     volumes:
