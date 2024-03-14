@@ -42,7 +42,7 @@ services:
       - back_tier
 
   search-client:
-    image: leapscientific/search-client:2.0.0
+    image: leapscientific/search-client:2.0.1
     hostname: search-client
     environment:
       NODE_ENV: production
