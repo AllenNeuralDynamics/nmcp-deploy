@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   sample-api:
-    image: leapscientific/sample-api:2.0.4
+    image: leapscientific/sample-api:2.0.5
     hostname: sample-api
     environment:
       NODE_ENV: production
@@ -30,7 +30,7 @@ services:
       - back_tier
 
   tracing-client:
-    image: leapscientific/tracing-client:2.0.3
+    image: leapscientific/tracing-client:2.0.4
     hostname: tracing-client
     environment:
       NODE_ENV: production
