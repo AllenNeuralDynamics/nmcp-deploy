@@ -30,7 +30,7 @@ services:
       - back_tier
 
   tracing-client:
-    image: leapscientific/tracing-client:2.0.4
+    image: leapscientific/tracing-client:2.0.5
     hostname: tracing-client
     environment:
       NODE_ENV: production
