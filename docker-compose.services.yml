@@ -17,20 +17,8 @@ services:
     networks:
       - back_tier
 
-  sample-client:
-    image: leapscientific/sample-client:2.0.2
-    hostname: sample-client
-    environment:
-      NODE_ENV: production
-    volumes:
-      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
-    ports:
-      - "9673:5000"
-    networks:
-      - back_tier
-
   tracing-client:
-    image: leapscientific/tracing-client:2.0.5
+    image: leapscientific/tracing-client:2.0.6
     hostname: tracing-client
     environment:
       NODE_ENV: production
@@ -42,7 +30,7 @@ services:
       - back_tier
 
   search-client:
-    image: leapscientific/search-client:2.0.1
+    image: leapscientific/search-client:2.0.2
     hostname: search-client
     environment:
       NODE_ENV: production
