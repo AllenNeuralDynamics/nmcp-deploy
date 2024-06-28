@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   sample-api:
-    image: leapscientific/sample-api:2.0.9
+    image: leapscientific/sample-api:2.0.10
     hostname: sample-api
     environment:
       NODE_ENV: production
