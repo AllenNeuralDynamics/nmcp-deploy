@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   sample-api:
-    image: leapscientific/sample-api:2.0.10
+    image: leapscientific/sample-api:2.0.11
     hostname: sample-api
     environment:
       NODE_ENV: production
@@ -18,7 +18,7 @@ services:
       - back_tier
 
   search-client:
-    image: leapscientific/search-client:2.0.6
+    image: leapscientific/search-client:2.0.7
     hostname: search-client
     environment:
       NODE_ENV: production
@@ -44,6 +44,19 @@ services:
       - "${NMCP_SLICE_LOCATION}:/data/slice"
     ports:
       - "9691:5000"
+    networks:
+      - back_tier
+
+  precomputed-worker:
+    image: leapscientific/precomputed-worker:1.0.0
+    hostname: precomputed
+    environment:
+      GRAPHQL_URL: http://sample-api:5000/graphql
+      SERVER_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
+      PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+      - "${NMCP_SECRETS_VOLUME}:/root/.cloudvolume/secrets"
     networks:
       - back_tier
 
