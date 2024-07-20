@@ -14,8 +14,23 @@ services:
     networks:
       - back_tier
 
+  nmcp-db:
+    image: postgres:16
+    hostname: nmcp-db
+    ports:
+      - "5433:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: "${DATABASE_PW}"
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./datastore/nmcp:/docker-entrypoint-initdb.d
+    networks:
+      - back_tier
+
 volumes:
   sample_data:
+  data:
 
 networks:
   back_tier:
