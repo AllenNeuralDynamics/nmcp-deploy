@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Start service(s) that are not typically under local development (e.g., databases), but are required to run and test services that may be under development.
+
 if [ -a "options.sh" ]; then
     source "options.sh"
 fi

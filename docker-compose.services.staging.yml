@@ -1,11 +1,12 @@
 # Services that are required, but which may be run outside of containers as part of development, etc.  Starting container versions of these services is
 # optional under those conditions.
 #
-# Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
+# This is a convenience file for running the latest images for each container as part of a staging or internal deployment phase.  For production deployments
+# see docker-compose.services.yml.
 version: '3.1'
 services:
   nmcp-api:
-    image: leapscientific/nmcp-api:2.0.12
+    image: leapscientific/nmcp-api:latest
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -22,7 +23,7 @@ services:
       - back_tier
 
   nmcp-client:
-    image: leapscientific/nmcp-client:2.0.8
+    image: leapscientific/nmcp-client:latest
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -37,7 +38,7 @@ services:
       - back_tier
 
   static-api:
-    image: leapscientific/nmcp-static-resources:2.0.0
+    image: leapscientific/nmcp-static-resources:latest
     hostname: static-api
     environment:
       NODE_ENV: production
@@ -52,7 +53,7 @@ services:
       - back_tier
 
   precomputed-worker:
-    image: leapscientific/nmcp-precomputed-worker:1.0.1
+    image: leapscientific/nmcp-precomputed-worker:latest
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
