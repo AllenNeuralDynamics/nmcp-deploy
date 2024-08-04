@@ -5,7 +5,7 @@
 version: '3.1'
 services:
   nmcp-api:
-    image: leapscientific/nmcp-api:2.0.12
+    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.13
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -22,7 +22,7 @@ services:
       - back_tier
 
   nmcp-client:
-    image: leapscientific/nmcp-client:2.0.8
+    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.9
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -37,7 +37,7 @@ services:
       - back_tier
 
   static-api:
-    image: leapscientific/nmcp-static-resources:2.0.0
+    image: ghcr.io/allenneuraldynamics/nmcp-static-resources:2.0.0
     hostname: static-api
     environment:
       NODE_ENV: production
@@ -52,7 +52,7 @@ services:
       - back_tier
 
   precomputed-worker:
-    image: leapscientific/nmcp-precomputed-worker:1.0.1
+    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:1.0.1
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
