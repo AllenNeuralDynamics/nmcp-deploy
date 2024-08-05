@@ -6,7 +6,7 @@
 version: '3.1'
 services:
   nmcp-api:
-    image: leapscientific/nmcp-api:latest
+    image: leapscientific/nmcp-api:2.0.13
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -23,7 +23,7 @@ services:
       - back_tier
 
   nmcp-client:
-    image: leapscientific/nmcp-client:latest
+    image: leapscientific/nmcp-client:2.0.10
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -38,7 +38,7 @@ services:
       - back_tier
 
   static-api:
-    image: leapscientific/nmcp-static-resources:latest
+    image: leapscientific/nmcp-static-resources:2.0.0
     hostname: static-api
     environment:
       NODE_ENV: production
@@ -53,7 +53,7 @@ services:
       - back_tier
 
   precomputed-worker:
-    image: leapscientific/nmcp-precomputed-worker:latest
+    image: leapscientific/nmcp-precomputed-worker:1.0.1
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
