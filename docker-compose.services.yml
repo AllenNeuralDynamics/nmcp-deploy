@@ -4,7 +4,7 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 version: '3.1'
 services:
-  nmcp-api:
+  api:
     image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.13
     hostname: nmcp-api
     environment:
@@ -21,7 +21,7 @@ services:
     networks:
       - back_tier
 
-  nmcp-client:
+  client:
     image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.9
     hostname: nmcp-client
     environment:
