@@ -8,7 +8,7 @@ services:
       - "5432:5432"
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_PASSWORD: "${DATABASE_PW}"
+      POSTGRES_PASSWORD: "${NMCP_DATABASE_PW}"
     volumes:
       - data:/var/lib/postgresql/data
       - ./datastore/nmcp:/docker-entrypoint-initdb.d
