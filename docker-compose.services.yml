@@ -64,7 +64,7 @@ services:
       - back_tier
 
   precomputed-worker:
-    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:1.0.1
+    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:1.0.2
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
