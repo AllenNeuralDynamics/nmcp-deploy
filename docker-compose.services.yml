@@ -5,7 +5,7 @@
 version: '3.1'
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.13
+    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.14
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -22,12 +22,11 @@ services:
       - back_tier
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.9
+    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.10
     hostname: nmcp-client
     environment:
       NODE_ENV: production
       SEARCH_API_HOST: nmcp-api
-      SEARCH_CLIENT_SCOPE: "Internal"
       AUTH_CLIENT_ID: "${NMCP_AUTH_CLIENT_ID}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"

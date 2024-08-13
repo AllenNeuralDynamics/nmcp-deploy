@@ -6,14 +6,17 @@
 version: '3.1'
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.13
+    image: leapscientific/nmcp-api:2.0.14
     hostname: nmcp-api
     environment:
       NODE_ENV: production
+      NMCP_CCF_30_ONTOLOGY_PATH: "${NMCP_ONTOLOGY_PATH}"
       NMCP_AUTH_REQUIRED: true
-      SERVER_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
-      CCF_30_ONTOLOGY_PATH: ${NMCP_ONTOLOGY_PATH}
-      DATABASE_PW:
+      NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
+      NMCP_AUTHENTICATION_TENANT_NAME: "${NMCP_AUTHENTICATION_TENANT_NAME}"
+      NMCP_AUTHENTICATION_AUDIENCE: "${NMCP_AUTHENTICATION_AUDIENCE}"
+      NMCP_AUTHENTICATION_CLIENT_ID: "${NMCP_AUTHENTICATION_CLIENT_ID}"
+      NMCP_DATABASE_PW: "${NMCP_DATABASE_PW}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
@@ -27,9 +30,7 @@ services:
     hostname: nmcp-client
     environment:
       NODE_ENV: production
-      SEARCH_API_HOST: nmcp-api
-      SEARCH_CLIENT_SCOPE: "Internal"
-      AUTH_CLIENT_ID: "${NMCP_AUTH_CLIENT_ID}"
+      NMCP_API_HOST: nmcp-api
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     ports:
@@ -37,9 +38,20 @@ services:
     networks:
       - back_tier
 
+  export:
+    image: leapscientific/nmcp-export:2.0.1
+    hostname: nmcp-export
+    environment:
+      NODE_ENV: production
+      NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    networks:
+      - back_tier
+
   static-api:
     image: leapscientific/nmcp-static-resources:2.0.0
-    hostname: static-api
+    hostname: nmcp-static
     environment:
       NODE_ENV: production
       STATIC_API_IS_INTERNAL: 1

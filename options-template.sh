@@ -4,7 +4,7 @@
 # Docker Compose files are in the Compose specific .env file.
 
 # Will override all database passwords (optional).
-export DATABASE_PW=
+export NMCP_DATABASE_PW=
 
 # Customize Compose project/container prefix.
 export NMCP_COMPOSE_PROJECT=
