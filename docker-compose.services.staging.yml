@@ -46,6 +46,8 @@ services:
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    ports:
+      - "9692:5000"
     networks:
       - back_tier
 
