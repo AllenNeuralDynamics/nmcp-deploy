@@ -6,7 +6,7 @@
 version: '3.1'
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.14
+    image: leapscientific/nmcp-api:2.0.15
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -26,7 +26,7 @@ services:
       - back_tier
 
   client:
-    image: leapscientific/nmcp-client:2.0.10
+    image: leapscientific/nmcp-client:2.0.11
     hostname: nmcp-client
     environment:
       NODE_ENV: production

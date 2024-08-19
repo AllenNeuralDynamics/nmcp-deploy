@@ -37,19 +37,6 @@ services:
     networks:
       - back_tier
 
-  export:
-    image: ghcr.io/allenneuraldynamics/nmcp-export:2.0.1
-    hostname: nmcp-export
-    environment:
-      NODE_ENV: production
-      NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
-    volumes:
-      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
-    ports:
-      - "9692:5000"
-    networks:
-      - back_tier
-
   static-api:
     image: ghcr.io/allenneuraldynamics/nmcp-static-resources:2.0.0
     hostname: static-api
