@@ -38,7 +38,7 @@ services:
       - back_tier
 
   export:
-    image: leapscientific/nmcp-export:2.0.1
+    image: ghcr.io/allenneuraldynamics/nmcp-export:2.0.1
     hostname: nmcp-export
     environment:
       NODE_ENV: production
