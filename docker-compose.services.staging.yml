@@ -3,7 +3,6 @@
 #
 # This is a convenience file for running the latest images for each container as part of a staging or internal deployment phase.  For production deployments
 # see docker-compose.services.yml.
-version: '3.1'
 services:
   api:
     image: leapscientific/nmcp-api:2.0.16
