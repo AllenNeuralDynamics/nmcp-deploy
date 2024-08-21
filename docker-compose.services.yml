@@ -50,7 +50,7 @@ services:
 
   static-api:
     image: ghcr.io/allenneuraldynamics/nmcp-static-resources:2.0.0
-    hostname: static-api
+    hostname: nmcp-static
     environment:
       NODE_ENV: production
       STATIC_API_IS_INTERNAL: 1
