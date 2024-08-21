@@ -11,3 +11,5 @@ export NMCP_COMPOSE_PROJECT=
 
 # Will be mapped to /var/log/nmcp in most service containers for log files.  Could be a host location or a docker volume.
 export NMCP_LOG_VOLUME=
+
+export NMCP_SERVICES_FILE=
