@@ -4,11 +4,11 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.16
+    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.17
     hostname: nmcp-api
     environment:
       NODE_ENV: production
-      CCF_30_ONTOLOGY_PATH: ${NMCP_ONTOLOGY_PATH}
+      NMCP_CCF_30_ONTOLOGY_PATH: "${NMCP_ONTOLOGY_PATH}"
       NMCP_AUTH_REQUIRED: true
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
       NMCP_AUTHENTICATION_CLIENT_ID: "${NMCP_AUTHENTICATION_CLIENT_ID}"
@@ -22,7 +22,7 @@ services:
       - back_tier
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.12
+    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.13
     hostname: nmcp-client
     environment:
       NODE_ENV: production
