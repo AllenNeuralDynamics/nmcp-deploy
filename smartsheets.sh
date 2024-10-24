@@ -6,8 +6,4 @@ if [ -a "options.sh" ]; then
     source "options.sh"
 fi
 
-if [ -z "NMCP_COMPOSE_PROJECT" ]; then
-    export NMCP_COMPOSE_PROJECT="nmcp"
-fi
-
-docker compose -p ${NMCP_COMPOSE_PROJECT} logs --follow
+docker run -it --rm --volume ./datastore/data:/mnt/data --network=nmcp_back_tier --env NMCP_DATABASE_PW=${NMCP_DATABASE_PW} leapscientific/nmcp-api:2.0.19 /bin/bash
