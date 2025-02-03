@@ -23,7 +23,7 @@ services:
       - back_tier
 
   client:
-    image: leapscientific/nmcp-client:2.0.16
+    image: leapscientific/nmcp-client:2.0.17
     hostname: nmcp-client
     environment:
       NODE_ENV: production
