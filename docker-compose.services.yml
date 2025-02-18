@@ -4,7 +4,7 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.20
+    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.22
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -22,7 +22,7 @@ services:
       - back_tier
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.15
+    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.18
     hostname: nmcp-client
     environment:
       NODE_ENV: production
