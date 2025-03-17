@@ -22,7 +22,7 @@ services:
       - back_tier
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.19
+    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.18
     hostname: nmcp-client
     environment:
       NODE_ENV: production
