@@ -13,6 +13,7 @@ services:
       - ./datastore/nmcp:/docker-entrypoint-initdb.d
     networks:
       - back_tier
+    restart: unless-stopped
 
 volumes:
   data:

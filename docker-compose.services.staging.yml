@@ -5,7 +5,7 @@
 # see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.26
+    image: leapscientific/nmcp-api:2.0.27
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -21,9 +21,10 @@ services:
       - "9671:5000"
     networks:
       - back_tier
+    restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:2.0.20
+    image: leapscientific/nmcp-client:2.0.21
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -34,6 +35,7 @@ services:
       - "9693:5000"
     networks:
       - back_tier
+    restart: unless-stopped
 
   export:
     image: leapscientific/nmcp-export:2.0.1
@@ -47,6 +49,7 @@ services:
       - "9692:5000"
     networks:
       - back_tier
+    restart: unless-stopped
 
   static-api:
     image: leapscientific/nmcp-static-resources:2.0.0
@@ -62,6 +65,7 @@ services:
       - "9691:5000"
     networks:
       - back_tier
+    restart: unless-stopped
 
   precomputed-worker:
     image: leapscientific/nmcp-precomputed-worker:1.0.6
@@ -75,6 +79,7 @@ services:
       - "${NMCP_SECRETS_VOLUME}:/root/.cloudvolume/secrets"
     networks:
       - back_tier
+    restart: unless-stopped
 
 volumes:
   log_output:
