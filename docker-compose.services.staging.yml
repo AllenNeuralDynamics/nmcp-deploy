@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:2.0.21
+    image: leapscientific/nmcp-client:2.0.22
     hostname: nmcp-client
     environment:
       NODE_ENV: production
