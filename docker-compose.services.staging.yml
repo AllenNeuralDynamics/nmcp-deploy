@@ -9,6 +9,7 @@ services:
     hostname: nmcp-api
     environment:
       NODE_ENV: production
+      NMCP_EXPERIMENTAL_ENV: true
       NMCP_CCF_30_ONTOLOGY_PATH: "${NMCP_ONTOLOGY_PATH}"
       NMCP_AUTH_REQUIRED: true
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
