@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:2.0.26
+    image: leapscientific/nmcp-client:2.0.27
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -69,7 +69,7 @@ services:
     restart: unless-stopped
 
   precomputed-worker:
-    image: leapscientific/nmcp-precomputed-worker:1.0.6
+    image: leapscientific/nmcp-precomputed-worker:1.0.7
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
