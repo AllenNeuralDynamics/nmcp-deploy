@@ -5,7 +5,7 @@
 # see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.35
+    image: leapscientific/nmcp-api:2.0.36
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:2.0.30
+    image: leapscientific/nmcp-client:2.0.31
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: leapscientific/nmcp-export:2.0.3
+    image: leapscientific/nmcp-export:2.0.4
     hostname: nmcp-export
     environment:
       NODE_ENV: production
