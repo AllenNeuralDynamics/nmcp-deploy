@@ -4,7 +4,7 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.38
+    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.40
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.33
+    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.34
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: ghcr.io/allenneuraldynamics/nmcp-export:2.0.3
+    image: ghcr.io/allenneuraldynamics/nmcp-export:2.0.4
     hostname: nmcp-export
     environment:
       NODE_ENV: production
@@ -67,7 +67,7 @@ services:
     restart: unless-stopped
 
   precomputed-worker:
-    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:1.0.7
+    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:1.0.8
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
@@ -76,6 +76,17 @@ services:
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_SECRETS_VOLUME}:/root/.cloudvolume/secrets"
+    networks:
+      - back_tier
+    restart: unless-stopped
+
+  quality-api:
+    image: ghcr.io/allenneuraldynamics/nmcp-qc:1.0.1
+    hostname: quality-api
+    ports:
+      - "9694:5000"
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     networks:
       - back_tier
     restart: unless-stopped

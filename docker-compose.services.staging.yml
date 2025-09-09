@@ -5,7 +5,7 @@
 # see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.39
+    image: leapscientific/nmcp-api:2.0.40
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:2.0.33
+    image: leapscientific/nmcp-client:2.0.34
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -78,6 +78,17 @@ services:
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_SECRETS_VOLUME}:/root/.cloudvolume/secrets"
+    networks:
+      - back_tier
+    restart: unless-stopped
+
+  quality-api:
+    image: leapscientific/nmcp-qc:1.0.1
+    hostname: quality-api
+    ports:
+      - "9694:5000"
+    volumes:
+      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     networks:
       - back_tier
     restart: unless-stopped
