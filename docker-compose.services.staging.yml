@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: leapscientific/nmcp-export:2.0.4
+    image: leapscientific/nmcp-export:2.0.5
     hostname: nmcp-export
     environment:
       NODE_ENV: production
