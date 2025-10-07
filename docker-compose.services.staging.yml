@@ -30,6 +30,7 @@ services:
     environment:
       NODE_ENV: production
       NMCP_API_HOST: nmcp-api
+      PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     ports:
