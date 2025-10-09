@@ -5,7 +5,7 @@
 # see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.42
+    image: leapscientific/nmcp-api:2.0.43
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:2.0.36
+    image: leapscientific/nmcp-client:2.0.37
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -84,7 +84,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: leapscientific/nmcp-qc:1.0.2
+    image: leapscientific/nmcp-qc:1.0.3
     hostname: quality-api
     ports:
       - "9694:5000"
