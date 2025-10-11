@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
 
   precomputed-worker:
-    image: leapscientific/nmcp-precomputed-worker:1.0.8
+    image: leapscientific/nmcp-precomputed-worker:1.0.9
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
