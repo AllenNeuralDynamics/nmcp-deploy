@@ -61,10 +61,29 @@ and the services restarted with the *up* script.
 ```
 will bring up the correct set of Compose logs for this container set (vs. test or any other deployment on the same host).
 
+## Local Development
+
 ### Development-only services
 
 ```
 ./dev.sh
 ```
-will start only those services that are not developed as part of the project, *e.g.,* generic database instances.  The rest of 
+will start only those services that are not developed as part of the project, *e.g.,* generic database instances.  The rest of
 the services are presumed to be run locally from code, etc.
+
+#### Precomputed Storage
+
+Precomputed skeletons and other system-generated Neuroglancer data sources that are typically stored in S3 or similar can be
+hosted locally via an S3-compatible service, setting `NMCP_PRECOMPUTED_OUTPUT` for `nmcp-client`, and configuring `nmcp-precomputed` 
+for this service.
+
+One option is to run a local [MinIO](https://www.min.io/) Docker container as an S3-compatible destination.  By default, the MinIO
+container will run on port 9000.
+
+* Create a bucket in MinIO
+* Set the expected env var `NMCP_PRECOMPUTED_OUTPUT` to `http://localhost:9000/<your-bucket>/ngv01` when running `nmcp-client`
+* In your Python environment for `nmcp-precomputed`, use the `cloudfiles` command line interface to configure the MinIO instance as an alias
+* Configure a minio-secrets.json files for this instance, as described in the `cloudvolume` and `cloudfiles` documentation
+* Pass the MinIO alias as the output location (`-o` argument) when running `nmcp-precomputed`
+
+Additional details on using an alias with `cloudfiles` can be found in the `nmcp-computed` README.
