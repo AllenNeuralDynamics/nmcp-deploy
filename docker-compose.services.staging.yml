@@ -78,7 +78,6 @@ services:
       PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
-      - "${NMCP_SECRETS_VOLUME}:/root/.cloudvolume/secrets"
     networks:
       - back_tier
     restart: unless-stopped
