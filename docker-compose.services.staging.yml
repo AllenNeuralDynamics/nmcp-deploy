@@ -53,22 +53,6 @@ services:
       - back_tier
     restart: unless-stopped
 
-  static-api:
-    image: leapscientific/nmcp-static-resources:2.0.0
-    hostname: nmcp-static
-    environment:
-      NODE_ENV: production
-      STATIC_API_IS_INTERNAL: 1
-      STATIC_SLICE_MOUNT_POINT: "/data/slice/"
-    volumes:
-      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
-      - "${NMCP_SLICE_LOCATION}:/data/slice"
-    ports:
-      - "9691:5000"
-    networks:
-      - back_tier
-    restart: unless-stopped
-
   precomputed-worker:
     image: leapscientific/nmcp-precomputed-worker:1.0.9
     hostname: precomputed-worker
