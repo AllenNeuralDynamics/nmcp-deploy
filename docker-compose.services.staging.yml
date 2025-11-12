@@ -5,7 +5,7 @@
 # see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:2.0.46
+    image: leapscientific/nmcp-api:2.0.47
     hostname: nmcp-api
     environment:
       NODE_ENV: production
