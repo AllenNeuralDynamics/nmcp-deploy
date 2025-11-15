@@ -1,7 +1,7 @@
 # Services that will be run regardless of environment and will not be built locally as part of development.
 services:
   db:
-    image: postgres:16
+    image: postgres:18
     hostname: nmcp-db
     ports:
       - "5432:5432"
