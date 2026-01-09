@@ -4,7 +4,7 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:2.0.45
+    image: ghcr.io/allenneuraldynamics/nmcp-api:3.0.3
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:2.0.39
+    image: ghcr.io/allenneuraldynamics/nmcp-client:3.0.3
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: ghcr.io/allenneuraldynamics/nmcp-export:2.0.5
+    image: ghcr.io/allenneuraldynamics/nmcp-export:3.0.0
     hostname: nmcp-export
     environment:
       NODE_ENV: production
@@ -51,24 +51,8 @@ services:
       - back_tier
     restart: unless-stopped
 
-  static-api:
-    image: ghcr.io/allenneuraldynamics/nmcp-static-resources:2.0.0
-    hostname: nmcp-static
-    environment:
-      NODE_ENV: production
-      STATIC_API_IS_INTERNAL: 1
-      STATIC_SLICE_MOUNT_POINT: "/data/slice/"
-    volumes:
-      - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
-      - "${NMCP_SLICE_LOCATION}:/data/slice"
-    ports:
-      - "9691:5000"
-    networks:
-      - back_tier
-    restart: unless-stopped
-
   precomputed-worker:
-    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:1.0.9
+    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:3.0.1
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
@@ -81,7 +65,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: ghcr.io/allenneuraldynamics/nmcp-qc:1.0.3
+    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.0
     hostname: quality-api
     ports:
       - "9694:5000"
