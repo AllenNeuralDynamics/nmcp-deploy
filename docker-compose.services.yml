@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:3.0.3
+    image: ghcr.io/allenneuraldynamics/nmcp-client:3.0.4
     hostname: nmcp-client
     environment:
       NODE_ENV: production
