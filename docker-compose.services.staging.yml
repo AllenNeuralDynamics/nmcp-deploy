@@ -30,6 +30,9 @@ services:
       NODE_ENV: production
       NMCP_API_HOST: nmcp-api
       NMCP_PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
+      DOI_API_PREFIX: "${NMCP_DOI_PREFIX}"
+      DOI_API_USER: "${NMCP_DOI_USER}"
+      DOI_API_PASSWORD: "${NMCP_DOI_PASSWORD}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     ports:
