@@ -4,7 +4,7 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:3.0.7
+    image: ghcr.io/allenneuraldynamics/nmcp-api:3.0.8
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -13,6 +13,11 @@ services:
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
       NMCP_AUTHENTICATION_CLIENT_ID: "${NMCP_AUTHENTICATION_CLIENT_ID}"
       NMCP_DATABASE_PW: "${NMCP_DATABASE_PW}"
+      DOI_API_URL: "${NMCP_DOI_URL}"
+      DOI_API_HOST: "${NMCP_DOI_HOST}"
+      DOI_API_PREFIX: "${NMCP_DOI_PREFIX}"
+      DOI_API_USER: "${NMCP_DOI_USER}"
+      DOI_API_PASSWORD: "${NMCP_DOI_PASSWORD}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
@@ -23,12 +28,13 @@ services:
     restart: unless-stopped
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:3.0.8
+    image: ghcr.io/allenneuraldynamics/nmcp-client:3.0.9
     hostname: nmcp-client
     environment:
       NODE_ENV: production
       NMCP_API_HOST: nmcp-api
       NMCP_PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
+      DOI_HANDLER: "${NMCP_DOI_HANDLER}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     ports:
@@ -52,7 +58,7 @@ services:
     restart: unless-stopped
 
   precomputed-worker:
-    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:3.0.1
+    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:3.0.3
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
@@ -65,7 +71,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.0
+    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.1
     hostname: quality-api
     ports:
       - "9694:5000"
