@@ -4,7 +4,7 @@
 # This is a convenience file for running the latest images for each container as part of a staging or internal deployment phase.  For production deployments see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:3.0.9
+    image: leapscientific/nmcp-api:3.0.10
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:3.0.9
+    image: leapscientific/nmcp-client:3.0.10
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -45,7 +45,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: leapscientific/nmcp-export:3.0.1
+    image: leapscientific/nmcp-export:3.0.3
     hostname: nmcp-export
     environment:
       NODE_ENV: production
@@ -59,7 +59,7 @@ services:
     restart: unless-stopped
 
   precomputed-worker:
-    image: leapscientific/nmcp-precomputed-worker:3.0.3
+    image: leapscientific/nmcp-precomputed-worker:3.0.5
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
@@ -72,7 +72,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: leapscientific/nmcp-qc:3.0.1
+    image: leapscientific/nmcp-qc:3.0.2
     hostname: quality-api
     ports:
       - "9694:5000"
