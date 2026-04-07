@@ -71,7 +71,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.2
+    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.3
     hostname: quality-api
     ports:
       - "9694:5000"

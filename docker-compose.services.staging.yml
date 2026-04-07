@@ -72,7 +72,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: leapscientific/nmcp-qc:3.0.2
+    image: leapscientific/nmcp-qc:3.0.3
     hostname: quality-api
     ports:
       - "9694:5000"
