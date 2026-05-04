@@ -21,6 +21,16 @@ services:
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/graphql" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      db:
+        condition: service_healthy
+      influxdb:
+        condition: service_healthy
     ports:
       - "9671:5000"
     networks:
@@ -37,6 +47,9 @@ services:
       DOI_HANDLER: "${NMCP_DOI_HANDLER}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    depends_on:
+      api:
+        condition: service_healthy
     ports:
       - "9693:5000"
     networks:
@@ -51,6 +64,9 @@ services:
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    depends_on:
+      api:
+        condition: service_healthy
     ports:
       - "9692:5000"
     networks:
@@ -66,6 +82,9 @@ services:
       PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
+    depends_on:
+      api:
+        condition: service_healthy
     networks:
       - back_tier
     restart: unless-stopped
@@ -73,6 +92,9 @@ services:
   quality-api:
     image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.3
     hostname: quality-api
+    depends_on:
+      api:
+        condition: service_healthy
     ports:
       - "9694:5000"
     volumes:

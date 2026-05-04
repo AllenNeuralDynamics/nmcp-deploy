@@ -1,5 +1,5 @@
-# Neuron Morphology Community Toolbox Deployment
-The Neuron Morphology Community Toolbox is a collection of services for managing annotated neuron data.
+# Neuron Morphology Community Portal Deployment
+The Neuron Morphology Community Portal is a collection of services for managing annotated neuron data.
 
 ## Installation
 The current implementation uses [Docker](https://www.docker.com/) with Docker Compose to manage the multiple independent services.  The containers should also
@@ -8,33 +8,36 @@ be compatible with [Podman](https://podman.io/) however this is untested.
 ### Docker
 A standard installation of Docker is sufficient.
 
-The databases use Data Volumes. Starting, stopping, and removing/updating the service containers will not remove database 
-contents.
+The databases (PostgreSQL and InfluxDB) use Data Volumes. Starting, stopping, and removing/updating the service containers will not remove database contents.
 
 ### Configuration
-Most provided scripts require copying `.env-template` to `.env`, copying `options-template.sh` to `options.sh` and setting the following values
+Copy `.env-template` to `.env` and set the following values:
 
-#### .env
+* `NMCP_DATABASE_PW` - password for the PostgreSQL database
+* `NMCP_INFLUX_DB_PASSWORD` - password for the InfluxDB admin user
+* `NMCP_COMPOSE_PROJECT` - Docker Compose project/container prefix, *e.g.,* `nmcp`
+* `NMCP_LOG_VOLUME` - host path mapped to `/var/log/nmcp` in service containers (can be set to `/tmp` for testing)
+* `NMCP_SERVICES_FILE` - compose file for application services (default `docker-compose.services.yml`)
+  * `docker-compose.services.staging.yml` is an alternate that uses images from the develop branch rather than main
 * `NMCP_AUTH_CLIENT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
-  * where this value is a secret key to be used between services internally, *e.g.,* a random uuid or similar
-* `NMCP_SLICE_LOCATION`, `NMCP_ONTOLOGY_LOCATION`, and `NMCP_ONTOLOGY_PATH` must be set
+  * a secret key used between services internally, *e.g.,* a random uuid or similar
+* `NMCP_ONTOLOGY_LOCATION` and `NMCP_ONTOLOGY_PATH` must be set
   * can be set to `/tmp` for deployment testing
-  * Otherwise, set to actual host locations for the data on the host machine
+  * otherwise, set to actual host locations for the data on the host machine
 * `NMCP_PRECOMPUTED_OUTPUT`
-  * A location url support by the [cloud-volume package](https://github.com/seung-lab/cloud-volume) for saving data sets generated in the Neuroglancer precomputed format
+  * a location url supported by the [cloud-volume package](https://github.com/seung-lab/cloud-volume) for saving data sets generated in the Neuroglancer precomputed format
 * `NMCP_SECRETS_VOLUME`
-  * Host location of any required secrets files for cloud-volume to be mapped into the necessary containers
-
-#### .options.sh
-* `DATABASE_PW` can be set to any value
-* `NMCP_COMPOSE_PROJECT` can be set to any value as a docker container prefix, e.g., `nmcp`
-* `NMCP_LOG_VOLUME` can be set to /tmp for testing deployment, otherwise to any desired permanent log location on the host
-* `NMCP_SERVICES_FILE`
-  * An optional reference to an alternate compose file with the required services that the production one (`docker-compose.services.yml`)
-  * `docker-compose.services.staging.yml` is one possible alternate value - it is included in this repository and uses images generated from the develop branch rather than main
+  * host location of any required secrets files for cloud-volume to be mapped into the necessary containers
+* `NMCP_AUTHENTICATION_CLIENT_ID` - AAD application (client) ID for authentication
+* `NMCP_DOI_URL` - URL of the NMCP website that generated DOI urls will reference, *e.g.,* `https://morphology.allenneuraldynamics.org/`
+* `NMCP_DOI_HOST` - host of the DataCite API server (production or test)
+* `NMCP_DOI_PREFIX` - DOI prefix (production or test value as appropriate)
+* `NMCP_DOI_USER` - DataCite API user credential
+* `NMCP_DOI_PASSWORD` - DataCite API password credential
+* `NMCP_DOI_HANDLER` - DOI handler base URL, *e.g.,* `https://dois.org` for production or `https://handle.test.datacite.org` for test
 
 ## Operation
-Most Docker Compose operations are wrapped in batch scripts to ensure the required flags are correct, e.g. test vs. 
+Most Docker Compose operations are wrapped in batch scripts to ensure the required flags are correct, e.g., test vs. 
 production.
 
 ### Starting or restarting the services

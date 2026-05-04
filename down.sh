@@ -4,12 +4,12 @@
 # not removed.
 
 # Allowed location of NMCP_COMPOSE_PROJECT variable.
-if [ -a "options.sh" ]; then
-    source "options.sh"
+if [ -a ".env" ]; then
+    source ".env"
 fi
 
 if [ -z "${NMCP_COMPOSE_PROJECT}" ]; then
     export NMCP_COMPOSE_PROJECT="nmcp"
 fi
 
-docker compose -p ${NMCP_COMPOSE_PROJECT} down
+docker compose -p ${NMCP_COMPOSE_PROJECT} down "$@"

@@ -3,8 +3,8 @@
 # Wrapper to stop containers that are part of default production project with the required env var properties.
 
 # Allowed location of NMCP_COMPOSE_PROJECT variable.
-if [ -a "options.sh" ]; then
-    source "options.sh"
+if [ -a ".env" ]; then
+    source ".env"
 fi
 
-docker compose -p ${NMCP_COMPOSE_PROJECT} stop
+docker compose -p ${NMCP_COMPOSE_PROJECT} stop "$@"
