@@ -8,7 +8,7 @@ services:
     hostname: nmcp-api
     environment:
       NODE_ENV: production
-      NMCP_EXPERIMENTAL_ENV: true
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
       NMCP_CCF_30_ONTOLOGY_PATH: "${NMCP_ONTOLOGY_PATH}"
       NMCP_AUTH_REQUIRED: true
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
@@ -44,6 +44,7 @@ services:
     hostname: nmcp-client
     environment:
       NODE_ENV: production
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
       NMCP_API_HOST: nmcp-api
       NMCP_PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
       DOI_HANDLER: "${NMCP_DOI_HANDLER}"
@@ -63,6 +64,7 @@ services:
     hostname: nmcp-export
     environment:
       NODE_ENV: production
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
@@ -79,6 +81,7 @@ services:
     image: leapscientific/nmcp-precomputed-worker:3.0.5
     hostname: precomputed-worker
     environment:
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
       GRAPHQL_URL: http://nmcp-api:5000/graphql
       SERVER_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
       PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
@@ -94,6 +97,8 @@ services:
   quality-api:
     image: leapscientific/nmcp-qc:3.0.3
     hostname: quality-api
+    environment:
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
     depends_on:
       api:
         condition: service_healthy
