@@ -4,7 +4,7 @@
 # This is a convenience file for running the latest images for each container as part of a staging or internal deployment phase.  For production deployments see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:3.0.12
+    image: leapscientific/nmcp-api:3.0.13
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: leapscientific/nmcp-client:3.0.12
+    image: leapscientific/nmcp-client:3.0.13
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -60,7 +60,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: leapscientific/nmcp-export:3.0.5
+    image: leapscientific/nmcp-export:3.0.6
     hostname: nmcp-export
     environment:
       NODE_ENV: production
