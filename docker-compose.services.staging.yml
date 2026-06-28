@@ -4,11 +4,10 @@
 # This is a convenience file for running the latest images for each container as part of a staging or internal deployment phase.  For production deployments see docker-compose.services.yml.
 services:
   api:
-    image: leapscientific/nmcp-api:3.0.13
+    image: leapscientific/nmcp-api:3.0.14
     hostname: nmcp-api
     environment:
       NODE_ENV: production
-      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
       NMCP_CCF_30_ONTOLOGY_PATH: "${NMCP_ONTOLOGY_PATH}"
       NMCP_AUTH_REQUIRED: true
       NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
@@ -20,14 +19,15 @@ services:
       DOI_API_PREFIX: "${NMCP_DOI_PREFIX}"
       DOI_API_USER: "${NMCP_DOI_USER}"
       DOI_API_PASSWORD: "${NMCP_DOI_PASSWORD}"
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
     healthcheck:
-        test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
-        interval: 30s
-        timeout: 5s
-        retries: 3
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     depends_on:
       db:
         condition: service_healthy
@@ -44,11 +44,11 @@ services:
     hostname: nmcp-client
     environment:
       NODE_ENV: production
-      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
       NMCP_API_HOST: nmcp-api
       NMCP_PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
       NMCP_GOOGLE_ANALYTICS_TAG: "${NMCP_GOOGLE_ANALYTICS_TAG}"
       DOI_HANDLER: "${NMCP_DOI_HANDLER}"
+      NMCP_EXPERIMENTAL_ENV: "${NMCP_EXPERIMENTAL_ENV}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     depends_on:
