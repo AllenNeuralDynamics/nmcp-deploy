@@ -23,7 +23,7 @@ services:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:5000/graphql" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
       interval: 30s
       timeout: 5s
       retries: 3
