@@ -10,15 +10,16 @@ services:
       NODE_ENV: production
       NMCP_CCF_30_ONTOLOGY_PATH: "${NMCP_ONTOLOGY_PATH}"
       NMCP_AUTH_REQUIRED: true
-      NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
-      NMCP_AUTHENTICATION_CLIENT_ID: "${NMCP_AUTHENTICATION_CLIENT_ID}"
+      NMCP_SERVER_KEY: "${NMCP_SERVER_KEY}"
+      NMCP_AUTHENTICATION_API_APP_ID: "${NMCP_AUTHENTICATION_API_APP_ID}"
+      NMCP_AUTHENTICATION_TENANT_ID: "${NMCP_AUTHENTICATION_TENANT_ID}"
       NMCP_DATABASE_PW: "${NMCP_DATABASE_PW}"
       NMCP_INFLUX_DB_TOKEN: "${NMCP_INFLUX_DB_TOKEN}"
-      DOI_API_URL: "${NMCP_DOI_URL}"
-      DOI_API_HOST: "${NMCP_DOI_HOST}"
-      DOI_API_PREFIX: "${NMCP_DOI_PREFIX}"
-      DOI_API_USER: "${NMCP_DOI_USER}"
-      DOI_API_PASSWORD: "${NMCP_DOI_PASSWORD}"
+      NMCP_DOI_API_URL: "${NMCP_DOI_URL}"
+      NMCP_DOI_API_HOST: "${NMCP_DOI_HOST}"
+      NMCP_DOI_API_PREFIX: "${NMCP_DOI_PREFIX}"
+      NMCP_DOI_API_USER: "${NMCP_DOI_USER}"
+      NMCP_DOI_API_PASSWORD: "${NMCP_DOI_PASSWORD}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
       - "${NMCP_ONTOLOGY_LOCATION}:${NMCP_ONTOLOGY_LOCATION}"
@@ -46,7 +47,7 @@ services:
       NMCP_API_HOST: nmcp-api
       NMCP_PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
       NMCP_GOOGLE_ANALYTICS_TAG: "${NMCP_GOOGLE_ANALYTICS_TAG}"
-      DOI_HANDLER: "${NMCP_DOI_HANDLER}"
+      NMCP_DOI_HANDLER: "${NMCP_DOI_HANDLER}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     depends_on:
@@ -63,7 +64,7 @@ services:
     hostname: nmcp-export
     environment:
       NODE_ENV: production
-      NMCP_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
+      NMCP_AUTHENTICATION_KEY: "${NMCP_SERVER_KEY}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"
     depends_on:
@@ -80,7 +81,7 @@ services:
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
-      SERVER_AUTHENTICATION_KEY: "${NMCP_AUTH_CLIENT_ID}"
+      SERVER_AUTHENTICATION_KEY: "${NMCP_SERVER_KEY}"
       PRECOMPUTED_OUTPUT: "${NMCP_PRECOMPUTED_OUTPUT}"
     volumes:
       - "${NMCP_LOG_VOLUME}:/var/log/nmcp"

@@ -19,7 +19,7 @@ Copy `.env-template` to `.env` and set the following values:
 * `NMCP_LOG_VOLUME` - host path mapped to `/var/log/nmcp` in service containers (can be set to `/tmp` for testing)
 * `NMCP_SERVICES_FILE` - compose file for application services (default `docker-compose.services.yml`)
   * `docker-compose.services.staging.yml` is an alternate that uses images from the develop branch rather than main
-* `NMCP_AUTH_CLIENT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
+* `NMCP_SERVER_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
   * a secret key used between services internally, *e.g.,* a random uuid or similar
 * `NMCP_ONTOLOGY_LOCATION` and `NMCP_ONTOLOGY_PATH` must be set
   * can be set to `/tmp` for deployment testing
@@ -28,7 +28,8 @@ Copy `.env-template` to `.env` and set the following values:
   * a location url supported by the [cloud-volume package](https://github.com/seung-lab/cloud-volume) for saving data sets generated in the Neuroglancer precomputed format
 * `NMCP_SECRETS_VOLUME`
   * host location of any required secrets files for cloud-volume to be mapped into the necessary containers
-* `NMCP_AUTHENTICATION_CLIENT_ID` - AAD application (client) ID for authentication
+* `NMCP_AUTHENTICATION_API_APP_ID` - Entra application ID of the `nmcp-api` app registration, not that of the `nmcp-client` front end
+* `NMCP_AUTHENTICATION_TENANT_ID` - Entra directory (tenant) ID the API accepts tokens from
 * `NMCP_DOI_URL` - URL of the NMCP website that generated DOI urls will reference, *e.g.,* `https://morphology.allenneuraldynamics.org/`
 * `NMCP_DOI_HOST` - host of the DataCite API server (production or test)
 * `NMCP_DOI_PREFIX` - DOI prefix (production or test value as appropriate)
