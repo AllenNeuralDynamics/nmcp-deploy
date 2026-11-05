@@ -7,4 +7,8 @@ if [ -a ".env" ]; then
     source ".env"
 fi
 
+if [ -z "${NMCP_COMPOSE_PROJECT}" ]; then
+    export NMCP_COMPOSE_PROJECT="nmcp"
+fi
+
 docker compose -p ${NMCP_COMPOSE_PROJECT} stop "$@"

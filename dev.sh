@@ -15,7 +15,7 @@ for var in "${required_vars[@]}"; do
     fi
 done
 
-if [ -z "NMCP_COMPOSE_PROJECT" ]; then
+if [ -z "${NMCP_COMPOSE_PROJECT}" ]; then
     export NMCP_COMPOSE_PROJECT="nmcp"
 fi
 
