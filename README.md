@@ -47,6 +47,15 @@ Copy `.env-template` to `.env` and set the following values:
 * `NMCP_PRECOMPUTED_OUTPUT`
   * a location url supported by the [cloud-volume package](https://github.com/seung-lab/cloud-volume) where
     `precomputed-worker` writes data sets in the Neuroglancer precomputed format and from which `client` loads them
+* `NMCP_QC_SKELETON_OUTPUT` - base location for raw reconstruction quality control skeletons (required for raw uploads)
+  * a location url supported by the cloud-volume package; each upload's skeleton is written to `<base>/raw-qc/<qc-tag>`
+  * written by the precomputed service and read by the quality control service, so both must be able to reach it
+  * must not be at or under `NMCP_PRECOMPUTED_OUTPUT`, which the precomputed service refuses
+* `NMCP_QC_BLOB_OUTPUT` - host directory for raw upload hand-off files and quality control documents (required)
+  * mapped into `nmcp-api` at the same path; files are written under `raw/`
+  * must persist across container restarts so pending quality control can resume
+* `NMCP_AIND_METADATA_URL` - AIND metadata portal base url, including any prefix, used to link raw upload quality
+  control results (required for raw uploads)
 * `NMCP_AUTHENTICATION_API_APP_ID` - Entra application ID of the `nmcp-api` app registration, not that of the `nmcp-client` front end
 * `NMCP_AUTHENTICATION_TENANT_ID` - Entra directory (tenant) ID the API accepts tokens from
 * `NMCP_DOI_URL` - URL of the NMCP website that generated DOI urls will reference, *e.g.,* `https://morphology.allenneuraldynamics.org/`
