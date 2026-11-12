@@ -90,6 +90,24 @@ production.
 destroys existing service containers *but does not remove any data volumes.*  Newer container images can then be pulled 
 and the services restarted with the *up* script.
 
+### Backing Up the Database
+
+```bash
+./backup_db.sh <output directory or file>
+```
+dumps the entire PostgreSQL instance (all databases and roles) from the running `db` container to a gzipped SQL file.
+Given a directory, it writes a timestamped `<project>-db-YYYYMMDD-HHMMSS.sql.gz` there.  Run it before pulling new
+images so the database can be rolled back after a bad update.
+
+To restore, stop the application services so nothing holds a database connection, load the dump, and restart:
+```bash
+./stop.sh api client export precomputed-worker quality-api
+gunzip -c <backup>.sql.gz | docker compose -f docker-compose.yml -p nmcp exec -T db psql -U postgres -d postgres
+./up.sh
+```
+Use the value of `NMCP_COMPOSE_PROJECT` in place of `nmcp` if it is set.  Two errors about the `postgres` role
+("current user cannot be dropped" and "already exists") are expected and harmless.
+
 ### Logs
 
 ```bash
