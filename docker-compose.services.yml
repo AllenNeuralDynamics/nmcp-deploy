@@ -4,7 +4,7 @@
 # Image versions in this file are the current, stable, production-ready images, which may not correspond to "latest" or version-less image names.
 services:
   api:
-    image: ghcr.io/allenneuraldynamics/nmcp-api:3.1.0
+    image: ghcr.io/allenneuraldynamics/nmcp-api:3.1.2
     hostname: nmcp-api
     environment:
       NODE_ENV: production
@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: ghcr.io/allenneuraldynamics/nmcp-client:3.1.0
+    image: ghcr.io/allenneuraldynamics/nmcp-client:3.1.2
     hostname: nmcp-client
     environment:
       NODE_ENV: production
@@ -66,7 +66,7 @@ services:
     restart: unless-stopped
 
   export:
-    image: ghcr.io/allenneuraldynamics/nmcp-export:3.0.8
+    image: ghcr.io/allenneuraldynamics/nmcp-export:3.1.0
     hostname: nmcp-export
     environment:
       NODE_ENV: production
@@ -83,7 +83,7 @@ services:
     restart: unless-stopped
 
   precomputed-worker:
-    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:3.0.5
+    image: ghcr.io/allenneuraldynamics/nmcp-precomputed-worker:3.1.0
     hostname: precomputed-worker
     environment:
       GRAPHQL_URL: http://nmcp-api:5000/graphql
@@ -99,7 +99,7 @@ services:
     restart: unless-stopped
 
   quality-api:
-    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.0.3
+    image: ghcr.io/allenneuraldynamics/nmcp-qc:3.1.0
     hostname: quality-api
     depends_on:
       api:
